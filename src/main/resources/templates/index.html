@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head th:replace="fragments/head">
+</head>
+
+<body class="h-screen background flex flex-col justify-content-center">
+
+<div class="bg-gray-200 h-1/5 m-auto rounded w-1/5 flex flex-col justify-content-center">
+    <div class="m-auto text-center w-3/4">
+        <div th:if="${user}">
+            <p th:text="${user.getName()}"></p>
+            <p th:text="${user.getEmail()}"></p>
+            <p th:text="${user.getProvider().toString()}" class="font-black"></p>
+            <div class="p-1 mt-1 border-black border-1 rounded flex flex-col">
+                <a href="/private" class="bg-red-400 text-white rounded p-1 mb-1">Private</a>
+                <a href="/logout" class="bg-red-400 text-white rounded p-1">Logout</a>
+            </div>
+        </div>
+        <div th:unless="${user}">
+            <p class="text-xl">Please login</p>
+            <div class="mt-1 flex flex-col">
+                <a href="http://localhost:8080/oauth2/authorization/google"
+                   class="bg-red-400 hover:bg-red-500 text-white rounded p-1 text-xl mb-1">Sign in with <i
+                        class="fa fa-google" aria-hidden="true"></i></a>
+                <a href="http://localhost:8080/oauth2/authorization/github"
+                   class="bg-blue-400 hover:bg-blue-500 text-white rounded p-1 text-xl">Sign in with <i
+                        class="fa fa-github" aria-hidden="true"></i></a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+
+</html>
