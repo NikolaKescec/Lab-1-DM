@@ -6,15 +6,16 @@ import com.nk.lab1dm.lab1.service.dto.weather.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
-public class WeatherList {
+public class ThreeHourWeather {
 
     private Long dt;
 
     private Temperature main;
 
-    private Weather weather;
+    private List<Weather> weather;
 
     private Clouds clouds;
 

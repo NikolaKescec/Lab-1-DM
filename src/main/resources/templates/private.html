@@ -8,12 +8,21 @@
 <body class="h-screen background flex flex-col">
 
 <div class="h-1/5 w-full flex">
-    <div class="bg-white w-2/3 flex p-1 m-1 rounded">
-        <p>WEATHER</p>
+    <div class="bg-white w-2/3 flex p-1 m-1 rounded overflow-x-auto overflow-y-hidden">
+        <div class="flex h-auto">
+            <div th:each="threeHourWeather : ${weather.getList()}"
+                 class="bg-grey bg-gray-200 border-dotted border-4 border-black rounded p-1 m-1 flex flex-col justify-center">
+                <img th:src="'http://openweathermap.org/img/wn/' + ${threeHourWeather.getWeather().get(0).getIcon()} + '@2x.png'"
+                     th:title="'Weather icon'" class="h-1/2 w-1/2"/>
+                <p th:text="${threeHourWeather.getMain().getTemp()} + '°C'"></p>
+                <p th:text="${threeHourWeather.getWeather().get(0).getDescription()}"></p>
+                <p th:text="${threeHourWeather.getWeatherTime()}"></p>
+            </div>
+        </div>
     </div>
     <div th:if="${user}" class="bg-white w-1/3 flex p-1 m-1 rounded">
         <img th:src="${user.getImageUrl()}" th:if="${user.getImageUrl()}" class="h-auto w-auto rounded-full"
-             alt="Profile picture" th:title="Your profile picture from ${user.getProvider().toString()}"/>
+             alt="Profile picture" th:title="'Your profile picture from ' + ${user.getProvider().toString()}"/>
         <div class="h-auto w-auto p-1 ml-1">
             <p th:text="${user.getName()}"></p>
             <p th:text="${user.getEmail()}"></p>

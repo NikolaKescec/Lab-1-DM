@@ -6,8 +6,6 @@ import com.nk.lab1dm.lab1.service.dto.city.Coordinates;
 
 public interface WeatherForecastSagaService {
 
-    WeatherForecast getWeatherForecast(User user, String city);
-
     WeatherForecast getWeatherForecast(User user, Coordinates coordinates);
 
 }

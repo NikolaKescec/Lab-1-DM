@@ -1,7 +1,18 @@
 package com.nk.lab1dm.lab1.entity;
 
-import org.springframework.data.mongodb.core.mapping.Document;
+import com.nk.lab1dm.lab1.service.dto.ThreeHourWeather;
+import com.nk.lab1dm.lab1.service.dto.city.City;
+import lombok.Data;
 
-@Document
+import java.util.List;
+
+@Data
 public class WeatherForecast {
+
+    private Integer cnt;
+
+    private List<ThreeHourWeather> list;
+
+    private City city;
+    
 }

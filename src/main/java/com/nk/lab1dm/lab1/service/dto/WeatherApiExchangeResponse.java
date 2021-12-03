@@ -14,7 +14,7 @@ public class WeatherApiExchangeResponse {
 
     private Integer cnt;
 
-    private List<WeatherList> list;
+    private List<ThreeHourWeather> list;
 
     private City city;
 

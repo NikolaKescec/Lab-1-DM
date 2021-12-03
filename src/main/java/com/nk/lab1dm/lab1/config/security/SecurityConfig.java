@@ -27,12 +27,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .disable()
                 .httpBasic()
+                .disable()
+                .csrf()
                 .disable();
 
         //routes
         http
                 .authorizeRequests()
-                .antMatchers("/", "/css/**", "/logout")
+                .antMatchers("/", "/css/**", "/logout", "/weathertest")
                 .permitAll()
                 .antMatchers("/oauth2/**")
                 .permitAll()
