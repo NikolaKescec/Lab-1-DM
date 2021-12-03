@@ -2,7 +2,7 @@ package com.nk.lab1dm.lab1.service;
 
 import com.nk.lab1dm.lab1.entity.User;
 
-public interface UserService {
+public interface UserQueryService {
 
     User findByEmail(String email);
 

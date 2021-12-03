@@ -2,7 +2,7 @@ package com.nk.lab1dm.lab1.security.oauth2.user;
 
 import java.util.Map;
 
-public class GithubOAuth2UserInfo extends OAuth2UserInfo{
+public class GithubOAuth2UserInfo extends OAuth2UserInfo {
 
     public GithubOAuth2UserInfo(Map<String, Object> attributes) {
         super(attributes);
@@ -10,22 +10,22 @@ public class GithubOAuth2UserInfo extends OAuth2UserInfo{
 
     @Override
     public String getId() {
-        return (String) attributes.get("sub");
+        return String.valueOf(attributes.get("id"));
     }
 
     @Override
     public String getName() {
-        return (String) attributes.get("name");
+        return String.valueOf(attributes.get("name"));
     }
 
     @Override
     public String getEmail() {
-        return (String) attributes.get("email");
+        return String.valueOf(attributes.get("email"));
     }
 
     @Override
     public String getImageUrl() {
-        return (String) attributes.get("picture");
+        return String.valueOf(attributes.get("avatar_url"));
     }
 
 }
