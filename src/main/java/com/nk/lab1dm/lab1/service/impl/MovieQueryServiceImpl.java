@@ -1,7 +1,6 @@
 package com.nk.lab1dm.lab1.service.impl;
 
 import com.nk.lab1dm.lab1.entity.Movie;
-import com.nk.lab1dm.lab1.entity.User;
 import com.nk.lab1dm.lab1.exception.ResourceNotFoundException;
 import com.nk.lab1dm.lab1.repository.MovieRepository;
 import com.nk.lab1dm.lab1.service.MovieQueryService;

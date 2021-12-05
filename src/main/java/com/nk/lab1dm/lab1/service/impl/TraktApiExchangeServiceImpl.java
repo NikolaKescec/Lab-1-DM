@@ -1,16 +1,13 @@
 package com.nk.lab1dm.lab1.service.impl;
 
 import com.nk.lab1dm.lab1.config.ApiConfig;
-import com.nk.lab1dm.lab1.entity.Movie;
 import com.nk.lab1dm.lab1.service.TraktApiExchangeService;
 import com.nk.lab1dm.lab1.service.dto.traktapi.TraktApiMovieQueryExchangeResponse;
-import com.nk.lab1dm.lab1.service.dto.PaginatedExchangeResponse;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
@@ -51,9 +48,7 @@ public class TraktApiExchangeServiceImpl implements TraktApiExchangeService {
 
         final URI uri = createUri("/search/movie", queryParams, Collections.emptyMap(), page);
 
-        final Page<TraktApiMovieQueryExchangeResponse> paginatedResponse = this.getDataFromTraktApi(uri, page);
-
-        return paginatedResponse;
+        return this.getDataFromTraktApi(uri, page);
     }
 
 
@@ -91,10 +86,8 @@ public class TraktApiExchangeServiceImpl implements TraktApiExchangeService {
 
         final Integer totalElements = extractNumber(responseEntity.getHeaders(), "x-pagination-item-count");
         final List<TraktApiMovieQueryExchangeResponse> payload = responseEntity.getBody();
-        final PageImpl<TraktApiMovieQueryExchangeResponse> paginatedResponse =
-                new PageImpl<>(payload, PageRequest.of(page == null ? 1 : page, payload.size()), totalElements == null ? 0 : totalElements);
 
-        return paginatedResponse;
+        return new PageImpl<>(payload, PageRequest.of(page == null ? 1 : page, payload.size()), totalElements == null ? 0 : totalElements);
     }
 
     private Integer extractNumber(HttpHeaders httpHeaders, String header) {

@@ -1,7 +1,6 @@
 package com.nk.lab1dm.lab1.mapper;
 
 import com.nk.lab1dm.lab1.entity.Movie;
-import com.nk.lab1dm.lab1.repository.MovieRepository;
 import com.nk.lab1dm.lab1.service.dto.traktapi.TraktApiMovieQueryExchangeResponse;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;

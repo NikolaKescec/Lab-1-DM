@@ -1,7 +1,6 @@
 package com.nk.lab1dm.lab1.service;
 
 import com.nk.lab1dm.lab1.service.dto.traktapi.TraktApiMovieQueryExchangeResponse;
-import com.nk.lab1dm.lab1.service.dto.PaginatedExchangeResponse;
 import org.springframework.data.domain.Page;
 
 import java.util.Optional;
