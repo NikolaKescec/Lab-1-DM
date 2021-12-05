@@ -17,6 +17,6 @@ public class ApiConfig {
 
     private final Map<String, String> urls;
 
-    private final Integer pageSize = 200;
+    private final Integer pageSize = 20;
 
 }

@@ -18,4 +18,7 @@ public interface MovieRepository extends MongoRepository<Movie, String> {
     @Query(value = "{'title': {$regex : ?0, $options: 'i'}}")
     List<Movie> findByTitle(String title);
 
+    @Query(value = "{ $or: [{traktId : ?0}, {imdbId : ?1}, {tmdbId : ?2}, {slug : ?3}] }")
+    Optional<Movie> findByIds(Long traktId, String imdbId, Long tmdb, String slug);
+
 }

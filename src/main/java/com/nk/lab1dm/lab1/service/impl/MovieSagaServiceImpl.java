@@ -1,5 +1,6 @@
 package com.nk.lab1dm.lab1.service.impl;
 
+import com.nk.lab1dm.lab1.config.ApiConfig;
 import com.nk.lab1dm.lab1.entity.Movie;
 import com.nk.lab1dm.lab1.exception.ResourceNotFoundException;
 import com.nk.lab1dm.lab1.mapper.TraktApiMovieQueryExchangeResponseMovieCreateMapper;
@@ -10,6 +11,7 @@ import com.nk.lab1dm.lab1.service.MovieSagaService;
 import com.nk.lab1dm.lab1.service.dto.PaginatedExchangeResponse;
 import com.nk.lab1dm.lab1.service.dto.traktapi.TraktApiMovieQueryExchangeResponse;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -29,32 +31,19 @@ public class MovieSagaServiceImpl implements MovieSagaService {
     private final TraktApiMovieQueryExchangeResponseMovieCreateMapper mapper;
 
     @Override
-    public PaginatedExchangeResponse<Movie> getTraktByTitle(String title, Integer page) {
-        final PaginatedExchangeResponse<Movie> response = new PaginatedExchangeResponse<>();
-        List<Movie> movies = movieQueryService.findByTitle(title);
+    public List<Movie> getTraktByTitle(String title) {
+        final List<Movie> movies;
 
         try {
-            if (movies.isEmpty()) {
-                final PaginatedExchangeResponse<TraktApiMovieQueryExchangeResponse> traktResponse = traktApiExchangeService.fetchTraktByTitle(title, page);
-                final List<Movie> newMovies = mapper.mapToList(traktResponse.getPayload());
+            final Page<TraktApiMovieQueryExchangeResponse> traktResponse = traktApiExchangeService.fetchTraktByTitle(title, 1);
+            final List<Movie> newMovies = mapper.mapToList(traktResponse.getContent());
 
-                response.setPage(traktResponse.getPage());
-                response.setTotalPages(traktResponse.getTotalPages());
-
-                movies = movieCommandService.saveAll(newMovies);
-
-                response.setPayload(movies);
-            }
-        } catch (RuntimeException e) {
-            return response;
+            movies = movieCommandService.saveAll(newMovies);
+        } catch (RuntimeException ignored) {
+            return null;
         }
 
-        response.setPayload(movies);
-        response.setTotalElements(movies.size());
-        response.setPage(1);
-        response.setTotalPages(1);
-
-        return response;
+        return movies;
     }
 
     @Override

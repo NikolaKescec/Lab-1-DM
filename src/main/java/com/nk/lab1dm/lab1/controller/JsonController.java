@@ -33,7 +33,7 @@ public class JsonController {
     @GetMapping("/movie")
     public ResponseEntity<?> getMovie() {
         try {
-            return ResponseEntity.ok(movieSagaService.getTraktByTitle("spider", 1));
+            return ResponseEntity.ok(movieSagaService.getTraktByTitle("batman"));
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

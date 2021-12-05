@@ -29,6 +29,10 @@ public class WeatherForecastSagaServiceImpl implements WeatherForecastSagaServic
     public WeatherForecast getWeatherForecast(User user, Coordinates coordinates) {
         final WeatherForecast weatherForecast = user.getWeatherForecast();
 
+        if (coordinates == null || coordinates.getLat() == null || coordinates.getLon() == null) {
+            return user.getWeatherForecast();
+        }
+
         if (Objects.isNull(weatherForecast) || timeout(weatherForecast.getList())) {
             final WeatherForecast freshWeatherForecast = genericCreateMapper.map(weatherApiExchangeService.fetchWeatherByGeoPosition(coordinates), WeatherForecast.class);
             user.setWeatherForecast(freshWeatherForecast);

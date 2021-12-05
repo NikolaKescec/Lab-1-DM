@@ -1,22 +1,17 @@
 package com.nk.lab1dm.lab1.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.lang.annotation.Documented;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
 
 @Data
 @Document
 public class Movie {
 
-    @Id
     private String id;
 
     private String title;
@@ -25,7 +20,7 @@ public class Movie {
 
     private Integer year;
 
-    @Indexed(unique = true, sparse = true)
+    @Id
     private Long traktId;
 
     @Indexed(unique = true, sparse = true)

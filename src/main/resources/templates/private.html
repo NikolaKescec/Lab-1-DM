@@ -9,7 +9,7 @@
 
 <div class="h-1/5 w-full flex">
     <div class="bg-white w-2/3 flex p-1 m-1 rounded overflow-x-auto overflow-y-hidden">
-        <div class="flex h-auto">
+        <div class="flex h-auto" th:if="${weather}">
             <div th:each="threeHourWeather : ${weather.getList()}"
                  class="bg-grey bg-gray-200 border-dotted border-4 border-black rounded p-1 m-1 flex flex-col justify-center">
                 <img th:src="'http://openweathermap.org/img/wn/' + ${threeHourWeather.getWeather().get(0).getIcon()} + '@2x.png'"
@@ -19,6 +19,12 @@
                 <p th:text="${threeHourWeather.getWeatherTime()}"></p>
             </div>
         </div>
+        <div class="flex h-auto" th:unless="${weather}" id="weather">
+            <div>
+                <p>Please input your coordinates.</p>
+            </div>
+            </form>
+        </div>
     </div>
     <div th:if="${user}" class="bg-white w-1/3 flex p-1 m-1 rounded">
         <img th:src="${user.getImageUrl()}" th:if="${user.getImageUrl()}" class="h-auto w-auto rounded-full"
@@ -27,17 +33,69 @@
             <p th:text="${user.getName()}"></p>
             <p th:text="${user.getEmail()}"></p>
             <p th:text="'Logged in with: ' + ${user.getProvider().toString()}" class="font-black"></p>
-            <a href="/logout" class="bg-red-400 text-white rounded p-1 m-auto">Logout</a>
+            <a href="/logout" class="bg-red-400 text-white rounded p-1 m-auto text-red-50">Logout</a>
         </div>
     </div>
 </div>
 
 <div class="h-4/5 w-full flex">
     <div class="w-full overflow-scroll bg-white p-1 m-1 rounded">
-        <p>MOVIES</p>
+        <div class="mb-2">
+            <form method="post" th:action="@{/private}" class="flex">
+                <input type="text" name="title" id="title" placeholder="Movie title" class="rounded-full px-2 py-1">
+                <button class="bg-red-600 rounded p-1 ml-1 text-red-50">Search</button>
+                <a th:if="${search}" th:href="@{/private}" class="bg-red-600 rounded p-1 ml-1 text-red-50">Show all</a>
+            </form>
+        </div>
+        <div th:if="${movies}" class="oveflow-auto">
+            <div th:each="movie : ${movies}" class="bg-gray-100 shadow-1xl rounded-2xl p-2 mt-1 mx-1">
+                <div class="flex">
+                    <span class="font-black">Title: </span>
+                    <p th:text="${movie.title}" class="ml-1">TITLE</p>
+                    <span class="font-black ml-4">Year: </span>
+                    <p th:text="${movie.year}" class="ml-1">YEAR</p>
+                </div>
+                <div>
+                    <div th:if="${!#strings.isEmpty(movie.tagline)}">
+                        <span class="font-black">Tagline: </span>
+                        <p th:text="${movie.tagline}">TAGLINE</p>
+                    </div>
+                    <div th:if="${!#strings.isEmpty(movie.trailer)}">
+                        <span class="font-black">Trailer: </span>
+                        <a th:href="${movie.trailer}" th:text="${movie.trailer}"
+                           class="rounded-full px-2 px-1 bg-red-600 text-red-50"></a>
+                        <iframe th:src="${movie.trailer}"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
 </body>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    function setLatLong(position) {
+        lat = position.coords.latitude;
+        lon = position.coords.longitude;
+        window.location.href = location.href + `?lat=${lat}&lon=${lon}`;
+    }
+
+    function autoLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(setLatLong);
+        } else {
+            alert("Geolokacija nije podržana!");
+        }
+    }
+
+    const weather = /*[[${weather}]]*/ null;
+
+    if (!weather) {
+        autoLocation();
+    }
+    /*]]>*/
+</script>
 
 </html>
