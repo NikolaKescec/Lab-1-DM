@@ -1,7 +1,7 @@
 package com.nk.lab1dm.lab1.entity;
 
-import com.nk.lab1dm.lab1.service.dto.ThreeHourWeather;
-import com.nk.lab1dm.lab1.service.dto.city.City;
+import com.nk.lab1dm.lab1.service.dto.weatherapi.ThreeHourWeather;
+import com.nk.lab1dm.lab1.service.dto.weatherapi.city.City;
 import lombok.Data;
 
 import java.util.List;

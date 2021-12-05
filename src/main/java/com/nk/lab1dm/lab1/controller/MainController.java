@@ -5,7 +5,7 @@ import com.nk.lab1dm.lab1.security.CurrentUser;
 import com.nk.lab1dm.lab1.security.UserPrincipal;
 import com.nk.lab1dm.lab1.service.UserQueryService;
 import com.nk.lab1dm.lab1.service.WeatherForecastSagaService;
-import com.nk.lab1dm.lab1.service.dto.city.Coordinates;
+import com.nk.lab1dm.lab1.service.dto.weatherapi.city.Coordinates;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,11 +36,9 @@ public class MainController {
 
         final User user = userQueryService.findById(userPrincipal.getId());
 
-
         modelAndView.addObject("user", user);
         modelAndView.addObject("weather", weatherForecastSagaService.getWeatherForecast(user, new Coordinates(45.848986, 15.810560)));
         modelAndView.addObject("movies", null);
-
 
         return modelAndView;
     }

@@ -3,6 +3,7 @@ package com.nk.lab1dm.lab1.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
@@ -14,6 +15,7 @@ public class User {
 
     private String name;
 
+    @Indexed(unique = true, sparse = true)
     private String email;
 
     @JsonIgnore

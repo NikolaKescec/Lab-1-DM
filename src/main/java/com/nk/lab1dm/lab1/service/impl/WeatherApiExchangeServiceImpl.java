@@ -2,8 +2,8 @@ package com.nk.lab1dm.lab1.service.impl;
 
 import com.nk.lab1dm.lab1.config.ApiConfig;
 import com.nk.lab1dm.lab1.service.WeatherApiExchangeService;
-import com.nk.lab1dm.lab1.service.dto.WeatherApiExchangeResponse;
-import com.nk.lab1dm.lab1.service.dto.city.Coordinates;
+import com.nk.lab1dm.lab1.service.dto.weatherapi.WeatherApiExchangeResponse;
+import com.nk.lab1dm.lab1.service.dto.weatherapi.city.Coordinates;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;

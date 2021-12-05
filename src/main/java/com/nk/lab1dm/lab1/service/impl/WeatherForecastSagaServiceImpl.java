@@ -6,8 +6,8 @@ import com.nk.lab1dm.lab1.mapper.GenericCreateMapper;
 import com.nk.lab1dm.lab1.service.UserCommandService;
 import com.nk.lab1dm.lab1.service.WeatherForecastSagaService;
 import com.nk.lab1dm.lab1.service.WeatherApiExchangeService;
-import com.nk.lab1dm.lab1.service.dto.ThreeHourWeather;
-import com.nk.lab1dm.lab1.service.dto.city.Coordinates;
+import com.nk.lab1dm.lab1.service.dto.weatherapi.ThreeHourWeather;
+import com.nk.lab1dm.lab1.service.dto.weatherapi.city.Coordinates;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

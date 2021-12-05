@@ -1,6 +1,6 @@
-package com.nk.lab1dm.lab1.service.dto;
+package com.nk.lab1dm.lab1.service.dto.weatherapi;
 
-import com.nk.lab1dm.lab1.service.dto.city.City;
+import com.nk.lab1dm.lab1.service.dto.weatherapi.city.City;
 import lombok.Data;
 
 import java.util.List;

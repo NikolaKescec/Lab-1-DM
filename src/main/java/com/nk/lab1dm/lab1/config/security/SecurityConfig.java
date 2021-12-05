@@ -34,7 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //routes
         http
                 .authorizeRequests()
-                .antMatchers("/", "/css/**", "/logout", "/weathertest")
+                .antMatchers("/", "/css/**", "/logout", "/movie")
                 .permitAll()
                 .antMatchers("/oauth2/**")
                 .permitAll()

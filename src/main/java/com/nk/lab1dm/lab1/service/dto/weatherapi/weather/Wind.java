@@ -1,4 +1,4 @@
-package com.nk.lab1dm.lab1.service.dto.weather;
+package com.nk.lab1dm.lab1.service.dto.weatherapi.weather;
 
 import lombok.Data;
 

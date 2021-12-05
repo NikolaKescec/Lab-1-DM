@@ -1,4 +1,4 @@
-package com.nk.lab1dm.lab1.service.dto.city;
+package com.nk.lab1dm.lab1.service.dto.weatherapi.city;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

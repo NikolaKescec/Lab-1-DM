@@ -1,27 +1,46 @@
-package com.nk.lab1dm.lab1.service.dto;
+package com.nk.lab1dm.lab1.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.lang.annotation.Documented;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
 @Data
-public class TraktApiExchangeResponse {
+@Document
+public class Movie {
+
+    @Id
+    private String id;
 
     private String title;
 
+    private Integer score;
+
     private Integer year;
 
-    private Map<String, String> ids;
+    @Indexed(unique = true, sparse = true)
+    private Long traktId;
+
+    @Indexed(unique = true, sparse = true)
+    private String imdbId;
+
+    @Indexed(unique = true, sparse = true)
+    private Long tmdbId;
+
+    @Indexed(unique = true, sparse = true)
+    private String slug;
 
     private String tagline;
 
     private String overview;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate released;
 
     private Integer runtime;
@@ -38,12 +57,10 @@ public class TraktApiExchangeResponse {
 
     private Integer votes;
 
-    @JsonProperty("comment_count")
     private Integer commentCount;
 
     private String language;
 
-    @JsonProperty("available_translations")
     private List<String> availableTranslations;
 
     private List<String> genres;

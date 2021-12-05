@@ -1,8 +1,8 @@
-package com.nk.lab1dm.lab1.service.dto;
+package com.nk.lab1dm.lab1.service.dto.weatherapi;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.nk.lab1dm.lab1.service.dto.weather.*;
+import com.nk.lab1dm.lab1.service.dto.weatherapi.weather.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
