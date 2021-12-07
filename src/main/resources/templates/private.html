@@ -60,6 +60,10 @@
                         <span class="font-black">Tagline: </span>
                         <p th:text="${movie.tagline}">TAGLINE</p>
                     </div>
+                    <div th:if="${#strings.isEmpty(movie.tagline) && !#strings.isEmpty(movie.overview)}">
+                        <p class="font-black">Overview: </p>
+                        <p th:text="${movie.overview}">OVERWIEW</p>
+                    </div>
                     <div th:if="${!#strings.isEmpty(movie.trailer)}">
                         <span class="font-black">Trailer: </span>
                         <a th:href="${movie.trailer}" th:text="${movie.trailer}"
